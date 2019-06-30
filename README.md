@@ -8,36 +8,34 @@
 
 ### Folders
 
-<pre>   |-[_]
-      |-[config]
-   |-[core]
-      |-_.php
-      |........
-   |-[user-dolder-1]
-   |-[user-dolder-2]
-   |........
-   |-index.php
-</pre>
+    |-[_]
+        |-[config]
+        |-[core]
+            |-_.php
+            |........
+        |-[user-dolder-1]
+        |-[user-dolder-2]
+        |........
+        |-index.php
+
 
 ### Main file (index.php)
 
 **Minimal framework configuration**
 
-<pre><?php
-require __DIR__.'/core/_.php';
-_::autoload(); //Autoloading classes
-</pre>
+    <?php
+    require __DIR__.'/core/_.php';
+    _::autoload(); //Autoloading classes
 
 **MVC configuration**
 
-<pre><?php
-require __DIR__.'/core/_.php';
+    <?php
+    require __DIR__.'/core/_.php';
 
-_::autoload(); //Autoloading classes
+    _::autoload(); //Autoloading classes
 
-$site = _::get('site.controller'); //Loading main front controller
-$site->run(); //Running main front controller
-</pre>
+    $site = _::get('site.controller'); //Loading main front controller
+    $site->run(); //Running main front controller
 
 ### Autoloading
 
@@ -76,20 +74,20 @@ _() or \_() is a base class which implements **Dependency Injection**
 
 # Routes
 
-<pre><?php
-return [
-    'routes' => [
-        'about' => '\site\modules\main\menu\about',
-        'structure' => '\site\modules\main\menu\structure',
-        'di' => '\site\modules\main\menu\di',
-        'routes' => '\site\modules\main\menu\routes',
-        'views' => '\site\modules\main\menu\views',
-        'controllers' => '\site\modules\main\menu\controllers'
-    ],
-    '404' => '\site\modules\service\pages\page404',
-    'default' => '\site\modules\main\menu\about'
-];
-      </pre>
+    <?php
+    return [
+        'routes' => [
+            'about' => '\site\modules\main\menu\about',
+            'structure' => '\site\modules\main\menu\structure',
+            'di' => '\site\modules\main\menu\di',
+            'routes' => '\site\modules\main\menu\routes',
+            'views' => '\site\modules\main\menu\views',
+            'controllers' => '\site\modules\main\menu\controllers'
+        ],
+        '404' => '\site\modules\service\pages\page404',
+        'default' => '\site\modules\main\menu\about'
+    ];
+
 
 *   'about' - path
 *   \site\modules\main\menu - classpath (\site\modules\main\menu())
@@ -101,18 +99,16 @@ return [
 
 We run front controller in the begining
 
-<pre>$site = _::get('site.controller');
-//Which equals to 
-$site = new \site\SiteController(_::get('site.router'), _::get('site.parser'), _::get('site.layout'));
-$site->run();
-</pre>
+    $site = _::get('site.controller');
+    //Which equals to 
+    $site = new \site\SiteController(_::get('site.router'), _::get('site.parser'), _::get('site.layout'));
+    $site->run();
 
 Front controller extends **BaseFrontController**
 
 ### Base Front controller
 
-<pre>BaseFrontController($router, $parser, $layout)
-</pre>
+    BaseFrontController($router, $parser, $layout)
 
 The **router**, **parser**, and **layout** gets injected in front controller
 
@@ -120,15 +116,14 @@ The **router**, **parser**, and **layout** gets injected in front controller
 
 Can be any type of class
 
-<pre>namespace site\modules\main;
+namespace site\modules\main;
 
-class menu {
+    class menu {
 
-    public function about() {
-        $this->layout->view('about');
-    }
+        public function about() {
+            $this->layout->view('about');
+        }
 
-</pre>
 
 # Views
 
@@ -136,25 +131,24 @@ There are two methods in view class **render($template, $params = '')** and **vi
 
 **Views config**
 
-<pre><?php
-return [
-    'site' => [
-        'layout' =>     'site/views/layout',
-        'header' =>     'site/views/header',
-        'footer' =>     'site/views/footer',
-        'menu' =>       'site/views/menu',
+    <?php
+    return [
+        'site' => [
+            'layout' =>     'site/views/layout',
+            'header' =>     'site/views/header',
+            'footer' =>     'site/views/footer',
+            'menu' =>       'site/views/menu',
 
-        'about' =>       'site/modules/main/views/about',
-        'controllers' =>       'site/modules/main/views/controllers',
-        'di' =>       'site/modules/main/views/di',
-        'routes' =>       'site/modules/main/views/routes',
-        'structure' =>       'site/modules/main/views/structure',
-        'views' =>       'site/modules/main/views/views',
+            'about' =>       'site/modules/main/views/about',
+            'controllers' =>       'site/modules/main/views/controllers',
+            'di' =>       'site/modules/main/views/di',
+            'routes' =>       'site/modules/main/views/routes',
+            'structure' =>       'site/modules/main/views/structure',
+            'views' =>       'site/modules/main/views/views',
 
-        '404' => 'site/views/page404'
-    ],
-];
-</pre>
+            '404' => 'site/views/page404'
+        ],
+    ];
 
 On the right side there are file path of the template
 
@@ -162,31 +156,28 @@ On the right side there are file path of the template
 
 The view gets injected in Layout
 
-<pre>new \site\SiteLayout(_::get('site.viewer'));
-</pre>
+    new \site\SiteLayout(_::get('site.viewer'));
 
 Then we run
 
-<pre>    public function about() {
+    public function about() {
         $this->layout->view('about');
     }
-</pre>
 
 from local controller  
 and we write the view method manualy
 
-<pre>class SiteLayout extends \core\BaseLayout {
+    class SiteLayout extends \core\BaseLayout {
 
-    public function view($template, $params = '') {
-        if(empty($params))
-            $params = array();
+        public function view($template, $params = '') {
+            if(empty($params))
+                $params = array();
 
-        $params['_MENU'] = $this->viewer->render( \_::get('config/views.site.menu') , $params);
-        $params['_HEADER'] = $this->viewer->render( \_::get('config/views.site.header') , $params);
-        $params['_FOOTER'] = $this->viewer->render( \_::get('config/views.site.footer') , $params);
-        $params['_MAIN'] = $this->viewer->render( \_::get('config/views.site.'.$template) , $params);
+            $params['_MENU'] = $this->viewer->render( \_::get('config/views.site.menu') , $params);
+            $params['_HEADER'] = $this->viewer->render( \_::get('config/views.site.header') , $params);
+            $params['_FOOTER'] = $this->viewer->render( \_::get('config/views.site.footer') , $params);
+            $params['_MAIN'] = $this->viewer->render( \_::get('config/views.site.'.$template) , $params);
 
-        $this->viewer->view( \_::get('config/views.site.layout') , $params);
+            $this->viewer->view( \_::get('config/views.site.layout') , $params);
+        }
     }
-}
-</pre>
