@@ -5,8 +5,8 @@ class _ {
     public static $path_di = __DIR__.'/../_/';
     private static $data;
     
-    private static $registered = false;
     public static $path_autoload = __DIR__.'/../';
+    public static $path_autoload_psr4 = __DIR__.'/../vendor/';
     
     public static $object;
     
@@ -25,10 +25,37 @@ class _ {
             }
         };
     
-        if(!self::$registered) {
-            spl_autoload_register($loader, true, false);
-            self::$registered = true;
-        }
+        spl_autoload_register($loader, true, false);
+    }
+    
+    
+    public static function autoload_psr4() {
+        $loader = function($className) {
+            $path = explode('\\', $className);
+            $path = implode('/', $path);
+            $fileName = _::$path_autoload_psr4.$path.'.php';
+
+            if(file_exists($fileName)) {
+                require_once $fileName;
+                return true;
+            }
+            else {
+                return false;
+            }
+        };
+    
+        spl_autoload_register($loader, true, false);
+    }
+    
+    /**
+     * Load classes instaled by Composer.
+     * Compatible with Symfony and Laravel
+     */
+    public static function autoload_composer() {
+        require _::$path_autoload_psr4.'composer/ClassLoader.php';
+        
+        $ClassLoader = \Composer\Autoload\ClassLoader();
+        $ClassLoader->register();
     }
    
     /**
