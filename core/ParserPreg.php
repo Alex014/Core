@@ -22,6 +22,14 @@ class ParserPreg implements interfaces\iparser {
             }
         }
         
+        if(empty($this->routes['404']))
+            throw \Exception('Route 404 not found !');
+
+
         return $this->routes['404'];
+    }
+    
+    public function getRoute($route) {
+        return $this->routes[$route];
     }
 }

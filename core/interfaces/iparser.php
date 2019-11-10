@@ -7,4 +7,5 @@ namespace core\interfaces;
  */
 interface iparser {
     public function getParsedRoute($route, &$params);
+    public function getRoute($route);
 }

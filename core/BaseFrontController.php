@@ -7,9 +7,9 @@ namespace core;
  * @author user
  */
 class BaseFrontController implements interfaces\icontroller {
-    private $router;
-    private $parser;
-    private $layout;
+    public $router;
+    public $parser;
+    public $layout;
     
     public $controller;
     public $params;

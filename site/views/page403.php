@@ -1,7 +1,7 @@
 <div class="jumbotron">
-  <h1 class="display-1">404</h1>
-  <p class="lead">No page</p>
+  <h1 class="display-1">403</h1>
+  <p class="lead">Forbiden</p>
   <hr class="my-4">
-  <p>This page does not exist.</p>
+  <p>Forbiden</p>
   <a class="btn btn-primary btn-lg" href="/" role="button">Go to main page</a>
 </div>

@@ -13,6 +13,7 @@ return [
         'structure' =>       'site/modules/main/views/structure',
         'views' =>       'site/modules/main/views/views',
         
+        '403' => 'site/views/page403',
         '404' => 'site/views/page404'
     ],
 ];

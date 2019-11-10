@@ -19,4 +19,13 @@ class SiteLayout extends \core\BaseLayout {
         
         $this->viewer->view( \_::get('config/views.site.layout') , $params);
     }
+    
+    public function viewService($template) {
+        $params['_MENU'] = '';
+        $params['_HEADER'] = '<title>Error</title>';
+        $params['_FOOTER'] = '';
+        $params['_MAIN'] = $this->viewer->render( \_::get('config/views.site.'.$template) , $params);
+        
+        $this->viewer->view( \_::get('config/views.site.layout') , $params);
+    }
 }

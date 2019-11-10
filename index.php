@@ -6,5 +6,8 @@ require __DIR__.'/core/_.php';
 
 _::autoload(); //Autoloading classes
 
-$site = _::get('site.controller'); //Loading main front controller
-$site->run(); //Running main front controller
+//$site = _::get('site.controller'); //Loading main front controller
+//$site->run(); //Running main front controller
+
+use \site\Polices;
+$polices = Polices::create(_::get('site.controller'))->run(); // User polices using Facade pattern
