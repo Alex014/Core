@@ -6,7 +6,7 @@ namespace core;
  *
  * @author user
  */
-class BaseFrontController {
+class BaseFrontController implements interfaces\icontroller {
     private $router;
     private $parser;
     private $layout;
@@ -20,21 +20,20 @@ class BaseFrontController {
         $this->layout = $layout;
     }
     
-    public function run() {
-        if(method_exists($this, 'beforeRun'))
-            $this->beforeRun();
-        
+    public function route() {
         $this->params = array();
         $route = $this->router->getRouteString();
         $this->controller = $this->parser->getParsedRoute($route, $this->params);
-        //var_dump($this->controller);
+    }
+    
+    public function runController() {
         $result = \_::createAndCall($this->controller, $this->params, array('layout' => $this->layout));
         
         $this->controller_object = \_::$object;
-        
-        if(method_exists($this, 'afterRun'))
-            $this->afterRun();
-        
-        return $result;
+    }
+    
+    public function run() {
+        $this->route();
+        $this->runController();
     }
 }
