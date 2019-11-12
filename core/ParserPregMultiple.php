@@ -12,16 +12,13 @@ class ParserPregMultiple implements interfaces\iparser {
     
     public function __construct($routes_list, $show404 = true) {
         $this->show404 = $show404;
-        if(empty($this->routes['404']))
-            throw \Exception('Route 404 not found !');
-            
         $this->routes_list = $routes_list;
     }
     
     private function _find_route($route) {
         foreach ($this->routes_list as $routes) {
-            foreach ($routes['routes'] as $rt => $controller) {
-                if($rt == $route) {
+            foreach ($routes as $rt => $controller) {
+                if(!is_array($controller) && ($rt == $route)) {
                     return $controller;
                 }
             }
@@ -32,10 +29,13 @@ class ParserPregMultiple implements interfaces\iparser {
 
 
     public function getParsedRoute($route, &$params) {
-        if(trim($route) == '') {
+        if(empty($route)) {
             $controller = $this->_find_route('default');
+
             if(empty($controller))
-                throw \Exception('Route "default" not found !');
+                throw new \Exception('Route "default" not found !');
+            
+            return $controller;
         }
         
         foreach ($this->routes_list as $routes) {
@@ -50,7 +50,7 @@ class ParserPregMultiple implements interfaces\iparser {
             $controller404 = $this->_find_route('404');
             
             if(empty($controller404))
-                throw \Exception('Route 404 not found !');
+                throw new \Exception('Route 404 not found !');
             
             return $controller404;
         }

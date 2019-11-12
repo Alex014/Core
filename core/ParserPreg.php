@@ -16,9 +16,9 @@ class ParserPreg implements interfaces\iparser {
     }
     
     public function getParsedRoute($route, &$params) {
-        if(trim($route) == '') {
+        if(empty($route)) {
             if(empty($this->routes['default']))
-                throw \Exception('Route "default" not found !');
+                throw new \Exception('Route "default" not found !');
             else
                 return $this->routes['default'];
         }
@@ -31,7 +31,7 @@ class ParserPreg implements interfaces\iparser {
         
         if($this->show404)
             if(empty($this->routes['404']))
-                throw \Exception('Route 404 not found !');
+                throw new \Exception('Route 404 not found !');
 
 
         if($this->show404)
