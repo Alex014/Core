@@ -4,7 +4,7 @@ return [
         return new \core\RouterGet();
     },
     'parser' => function() {
-        return new \core\ParserPreg(_::get('config/routes'));
+        return [new \core\ParserPreg(_::get('config/routes'))];
     },
     'viewer' => function() {
         return new \core\Viewer();
