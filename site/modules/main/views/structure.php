@@ -28,6 +28,15 @@ require __DIR__.'/core/_.php';
 _::autoload(); //Autoloading classes
 </pre>
 
+<b>Composer configuration</b>
+
+<pre>
+&lt;?php
+    require dirname(__DIR__).'/vendor/autoload.php';
+    use core\framework\_;
+    _::get('site.controller')->run();
+</pre>
+
 <b>MVC configuration</b>
 <pre>
 &lt;?php
