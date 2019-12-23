@@ -6,7 +6,7 @@
     <div class="col-lg">
         
 <h3>Base class</h3>
-_() or \_() is a base class which implements <b>Dependency Injection</b> 
+_ or core\framework\_ is a base class which implements <b>Dependency Injection</b> 
         
 <h3>Base methods</h3>
     <ul>

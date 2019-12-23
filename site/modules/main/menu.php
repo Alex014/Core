@@ -8,6 +8,10 @@ namespace site\modules\main;
  */
 class menu {
     
+    public function allowed($param = '') {
+        $this->layout->view('allowed', ['param' => $param]);
+    }
+    
     public function about() {
         $this->layout->view('about');
     }

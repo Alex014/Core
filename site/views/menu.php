@@ -21,6 +21,9 @@
       <li class="nav-item <?if($active == 'controllers'):?>active<?endif;?>">
         <a class="nav-link" href="/controllers">Controllers</a>
       </li>
+      <li class="nav-item <?if($active == 'allowed'):?>active<?endif;?>">
+        <a class="nav-link" href="/allowed/15">Access</a>
+      </li>
       <li class="nav-item <?if($active == 'views'):?>active<?endif;?>">
         <a class="nav-link" href="/views">Views</a>
       </li>

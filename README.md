@@ -2,7 +2,7 @@
 
 *   It's a minimalist framework build around **Dependency Injection** pattern
 *   It can work from one file _.php
-*   It also supports autoloading and namespaces
+*   Compatible with Composer package manager and psr-4
 
 # Structure
 
@@ -10,13 +10,13 @@
 
     |-[_]
         |-[config]
-        |-[core]
-            |-_.php
-            |........
         |-[user-dolder-1]
         |-[user-dolder-2]
         |........
+    |-[public]
         |-index.php
+        |........
+    |-[vendor]
 
 
 ### Main file (index.php)
@@ -26,6 +26,13 @@
     <?php
     require __DIR__.'/core/_.php';
     _::autoload(); //Autoloading classes
+
+**Composer configuration**
+
+    <?php
+    require dirname(__DIR__).'/vendor/autoload.php';
+    use core\framework\_;
+    _::get('site.controller')->run();
 
 **MVC configuration**
 
@@ -54,7 +61,7 @@ All framework base classes is in [core] folder
 
 ### Base class
 
-_() or \_() is a base class which implements **Dependency Injection**
+_ or core\framework\_ is a base class which implements **Dependency Injection**
 
 ### Base methods
 
@@ -82,7 +89,8 @@ _() or \_() is a base class which implements **Dependency Injection**
             'di' => '\site\modules\main\menu\di',
             'routes' => '\site\modules\main\menu\routes',
             'views' => '\site\modules\main\menu\views',
-            'controllers' => '\site\modules\main\menu\controllers'
+            'controllers' => '\site\modules\main\menu\controllers',
+            'allowed\/(\d+)' => ['\site\modules\polices\allowed','\site\modules\menu\allowed']
         ],
         '404' => '\site\modules\service\pages\page404',
         'default' => '\site\modules\main\menu\about'
@@ -92,6 +100,7 @@ _() or \_() is a base class which implements **Dependency Injection**
 *   'about' - path
 *   \site\modules\main\menu - classpath (\site\modules\main\menu())
 *   \about - method ->about()
+*   \access-control => [access1,access2, ..., controller] - run controller if all access controllers return true
 
 # Controllers
 

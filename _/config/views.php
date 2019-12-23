@@ -12,6 +12,7 @@ return [
         'routes' =>       'site/modules/main/views/routes',
         'structure' =>       'site/modules/main/views/structure',
         'views' =>       'site/modules/main/views/views',
+        'allowed' =>       'site/modules/main/views/allowed',
         
         '403' => 'site/views/page403',
         '404' => 'site/views/page404'

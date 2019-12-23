@@ -1,0 +1,60 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "0660ee2f8b19ca3fa0e1f5e259326578",
+    "packages": [
+        {
+            "name": "c_o_r_e/framework",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Alex014/core_framework_package.git",
+                "reference": "92022378a6e852862b283bd3ae379d60c4d32606"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Alex014/core_framework_package/zipball/92022378a6e852862b283bd3ae379d60c4d32606",
+                "reference": "92022378a6e852862b283bd3ae379d60c4d32606",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "core\\framework\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aleksej Sokolov",
+                    "email": "aleksej000@gmail.com"
+                }
+            ],
+            "description": "Core framework package. https://github.com/Alex014/core_framework_package and https://github.com/Alex014/Core",
+            "homepage": "https://github.com/Alex014/core_framework_package",
+            "keywords": [
+                "autoload",
+                "dependency",
+                "package"
+            ],
+            "time": "2019-12-23T11:29:48+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": [],
+    "prefer-stable": true,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

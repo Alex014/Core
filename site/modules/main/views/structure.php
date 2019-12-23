@@ -8,15 +8,15 @@
 <h3>Folders</h3>
 
 <pre>
-   |-[_]
-      |-[config]
-   |-[core]
-      |-_.php
-      |........
-   |-[user-dolder-1]
-   |-[user-dolder-2]
-   |........
-   |-index.php
+    |-[_]
+        |-[config]
+        |-[user-dolder-1]
+        |-[user-dolder-2]
+        |........
+    |-[public]
+        |-index.php
+        |........
+    |-[vendor]
 </pre>
 
 <h3>Main file (index.php)</h3>

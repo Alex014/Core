@@ -1,11 +1,13 @@
 <?php
 namespace site;
 
+use core\framework\BaseFrontController;
+
 /**
  * Description of SiteController
  *
  * @author user
  */
-class SiteController extends \core\BaseFrontController {
+class SiteController extends BaseFrontController {
     //...
 }
