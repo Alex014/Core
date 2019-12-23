@@ -17,6 +17,7 @@
         |-index.php
         |........
     |-[vendor]
+        |........
 
 
 ### Main file (index.php)
